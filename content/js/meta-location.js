@@ -4,13 +4,13 @@ $(document).ready (function () {
 
    if (! $("div.del-meta-location").length) return;
 
-   dbd_location_meta.set_map_size ();
-   google.maps.event.addDomListener (window, 'load', dbd_location_meta.initialize_map);
+   del_location_meta.set_map_size ();
+   google.maps.event.addDomListener (window, 'load', del_location_meta.initialize_map);
 
-   $("input[name=loc_address1]").change (dbd_location_meta.update_map_position);
-   $("input[name=loc_city]").change (dbd_location_meta.update_map_position);
-   $("input[name=loc_state]").change (dbd_location_meta.update_map_position);
-   $("input[name=loc_postalcode]").change (dbd_location_meta.update_map_position);
+   $("input[name=loc_address1]").change (del_location_meta.update_map_position);
+   $("input[name=loc_city]").change (del_location_meta.update_map_position);
+   $("input[name=loc_state]").change (del_location_meta.update_map_position);
+   $("input[name=loc_postalcode]").change (del_location_meta.update_map_position);
 
 });
 
@@ -53,6 +53,9 @@ var del_location_meta = {
          var centerCoords = new google.maps.LatLng (currentLat, currentLng);
          var zoom = parseInt ($("input[name=loc_map_addressed_zoom]").val ());
          del_location_meta.build_map (centerCoords, zoom);
+
+         // set the coordinates in the display and input fields
+         del_location_meta.set_lat_lng_fields(centerCoords.lat(), centerCoords.lng());
 
       }
 

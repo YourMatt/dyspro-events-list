@@ -16,8 +16,8 @@ class del_location_manager {
 
       // add scripts and styles for the meta boxes
       wp_enqueue_script ('del_location_js', DEL_BASE_WEB_PATH . 'content/js/meta-location.js', array ('jquery'));
-      wp_enqueue_script ('del_location_maps_js', 'https://maps.googleapis.com/maps/api/js?key=' . get_option ('del_google_maps_api_key'));
-      wp_enqueue_style ('del_location_css', DBD_BASE_WEB_PATH . 'content/css/meta.css');
+      wp_enqueue_script ('google_maps_js', 'https://maps.googleapis.com/maps/api/js?key=' . get_option ('del_google_maps_api_key'));
+      wp_enqueue_style ('del_location_css', DEL_BASE_WEB_PATH . 'content/css/meta.css');
 
       // create the location meta box
       add_meta_box (

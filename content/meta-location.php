@@ -46,4 +46,6 @@
    <input type="hidden" name="loc_map_addressed_zoom" value="<?= $map_addressed_zoom ?>"/>
    <input type="hidden" name="loc_map_type" value="<?= $map_type ?>"/>
 
+   <!-- <? print_r ($loc_data); ?> -->
+
 </div>
