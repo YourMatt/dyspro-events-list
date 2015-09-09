@@ -46,7 +46,7 @@ class del_location_manager {
       $map_addressed_zoom = get_option ('del_google_maps_addressed_zoom');
 
       // add the form contents
-      include (DEL_BASE_PATH . "/content/meta-location.php");
+      include (DEL_BASE_PATH . '/content/meta-location.php');
 
    }
 

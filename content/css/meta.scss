@@ -1,0 +1,38 @@
+
+/* LOCATION META FORM */
+div.del-meta-location {
+  table {
+    width: 100%;
+    padding-right: 15px;
+    td {
+      &.col1 {
+        width: 20%;
+      }
+      &.col2 {
+        width: 30%;
+      }
+      &.col3 {
+        width: 50%;
+      }
+      &.del-coords {
+        color: #aaa;
+        font-style: italic;
+        padding-top: 10px;
+        text-align: center;
+      }
+    }
+  }
+  #del-meta-location-map {
+    background-color: #eee;
+    display: block;
+    width: 100%;
+    margin: 2px 10px;
+  }
+}
+
+/* DATE META FORM */
+div.del-meta-date {
+  table.full-selection {
+    width: 100%;
+  }
+}

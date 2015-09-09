@@ -1,29 +1,26 @@
-
 /* LOCATION META FORM */
 div.del-meta-location table {
-	width: 100%;
-	padding-right: 15px;
-}
-div.del-meta-location table td.col1 {
-	width: 20%;
-}
-div.del-meta-location table td.col2 {
-	width: 30%;
-}
-div.del-meta-location table td.col3 {
-	width: 50%;
-}
-
+  width: 100%;
+  padding-right: 15px; }
+  div.del-meta-location table td.col1 {
+    width: 20%; }
+  div.del-meta-location table td.col2 {
+    width: 30%; }
+  div.del-meta-location table td.col3 {
+    width: 50%; }
+  div.del-meta-location table td.del-coords {
+    color: #aaa;
+    font-style: italic;
+    padding-top: 10px;
+    text-align: center; }
 div.del-meta-location #del-meta-location-map {
-	background-color: #eee;
-	display: block;
-	width: 100%;
-	margin: 2px 10px;
-}
+  background-color: #eee;
+  display: block;
+  width: 100%;
+  margin: 2px 10px; }
 
-td.del-coords {
-	color: #aaa;
-	font-style: italic;
-	padding-top: 10px;
-	text-align: center;
-}
+/* DATE META FORM */
+div.del-meta-date table.full-selection {
+  width: 100%; }
+
+/*# sourceMappingURL=meta.css.map */

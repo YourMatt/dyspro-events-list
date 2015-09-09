@@ -18,4 +18,5 @@ require_once (DEL_BASE_PATH . '/classes/del-utilities.php');
 require_once (DEL_BASE_PATH . '/classes/del-plugin-manager.php');
 require_once (DEL_BASE_PATH . '/classes/del-settings-manager.php');
 require_once (DEL_BASE_PATH . '/classes/del-location-manager.php');
+require_once (DEL_BASE_PATH . '/classes/del-date-manager.php');
 // require_once (DEL_BASE_PATH . '/classes/del-shortcode-manager.php'); // TODO: Add shortcode functionality
