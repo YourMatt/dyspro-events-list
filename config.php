@@ -12,6 +12,8 @@ define ('DEL_POST_TYPE_NAME', 'del_event');
 define ('DEL_GOOGLE_MAPS_DEFAULT_ZOOM', 2);
 define ('DEL_GOOGLE_MAPS_ADDRESSED_ZOOM', 16);
 define ('DEL_GOOGLE_MAPS_DEFAULT_CENTER_LOCATION', 'United States');
+define ('DEL_DATE_DEFAULT_START_TIME', 60 * 60 * 8); // 8 hours
+define ('DEL_DATE_DEFAULT_DURATION', 60 * 60); // 1 hour
 
 // load support files
 require_once (DEL_BASE_PATH . '/classes/del-utilities.php');

@@ -37,6 +37,11 @@ class del_date_manager {
       // load current values
       // TODO: Add functionality
 
+      // set defaults if no date already set
+      $date_start = date ('m/d/Y');
+      $date_start_time = DEL_DATE_DEFAULT_START_TIME;
+      $date_duration = DEL_DATE_DEFAULT_DURATION;
+
       // add the form contents
       include (DEL_BASE_PATH . '/content/meta-date.php');
 
