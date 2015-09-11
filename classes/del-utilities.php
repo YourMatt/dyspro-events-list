@@ -7,6 +7,9 @@ class del_utilities {
       $current_value = get_post_meta ($post_id, $meta_name, true);
       $new_value = $_POST[$field_name];
 
+      // change date to seconds for start date
+      if ($field_name == 'date_start') $new_value = strtotime ($new_value);
+
       if ($current_value) {
          if (! $new_value) delete_post_meta ($post_id, $meta_name);
          else update_post_meta ($post_id, $meta_name, $new_value);

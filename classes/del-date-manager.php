@@ -36,6 +36,7 @@ class del_date_manager {
 
       // load current values
       $date_data = get_metadata ('post', $post->ID);
+      if ($date_data['_date_start']) $date_data['_date_start'] = date ('m/d/Y', $date_data['_date_start']);
 
       // set defaults if no date already set
       $date_data['_date_start'] || $date_data['_date_start'] = date ('m/d/Y');
@@ -63,27 +64,19 @@ class del_date_manager {
 
    function get_formatted_date ($post_id) {
 
+      $date = date ('M jS, Y \a\t g:ia', $this->get_event_time_since_epoch ($post_id));
+      return $date;
+
+   }
+
+   function get_event_time_since_epoch ($post_id) {
+
       $date_data = get_metadata ('post', $post_id);
 
-      /*
-      // set up the address lines
-      $line1 = $loc_data['_del_address1'][0];
-      $line2 = $loc_data['_del_address2'][0];
-      $line3 = $loc_data['_del_city'][0];
-      if ($line3) $line3 .= ', ';
-      $line3 .= $loc_data['_del_state'][0];
-      if ($loc_data['_del_postalcode']) $line3 .= ' ' . $loc_data['_del_postalcode'][0];
+      $date = $date_data['_date_start'][0];
+      $date += $date_data['_date_start_time'][0];
 
-      // build the address
-      $address = [];
-      if ($line1) $address[] = $line1;
-      if ($line2) $address[] = $line2;
-      if ($line3) $address[] = $line3;
-
-      return implode ('<br/>', $address);
-      */
-
-      return '';
+      return $date;
 
    }
 

@@ -4,11 +4,13 @@ class del_plugin_manager {
 
    // holds objects for querying post meta data
    private $location_manager;
+   private $date_manager;
 
    // initialize query objects
    public function __construct () {
 
       $this->location_manager = new del_location_manager ();
+      $this->date_manager = new del_date_manager ();
 
    }
 
@@ -84,6 +86,7 @@ class del_plugin_manager {
       $new_columns = array ();
       $new_columns['cb'] = $columns['cb'];
       $new_columns['title'] = $columns['title'];
+      $new_columns['event_date'] = 'Event Date';
       $new_columns['address'] = 'Address';
       $new_columns['date'] = $columns['date'];
 
@@ -95,12 +98,31 @@ class del_plugin_manager {
 
       return array (
          'title' => 'title',
+         'event_date' => 'del_date',
+         'address' => 'del_address',
          'date' => 'date'
       );
 
    }
 
    function sort_column ($request) {
+
+      if (! $request['orderby']) return $request;
+
+      switch ($request['orderby']) {
+         case 'del_date':
+            $request = array_merge ($request, array (
+               'meta_key' => '_date_start',
+               'orderby' => 'meta_value_num'
+            ));
+            break;
+         case 'del_address':
+            $request = array_merge ($request, array (
+               'meta_key' => '_del_address1',
+               'orderby' => 'meta_value'
+            ));
+            break;
+      }
 
       return $request;
 
@@ -111,6 +133,9 @@ class del_plugin_manager {
       switch ($column) {
          case 'address':
             print $this->location_manager->get_formatted_address ($post_id);
+            break;
+         case 'event_date':
+            print $this->date_manager->get_formatted_date ($post_id);
             break;
       }
 
