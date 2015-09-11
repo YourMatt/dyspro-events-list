@@ -4,7 +4,7 @@
       <tr>
          <td rowspan="2">
             <div id="date-event"></div>
-            <input type="hidden" name="date_start" value="<?= $date_start ?>"/>
+            <input type="hidden" name="date_start" value="<?= $date_data['_date_start'][0] ?>"/>
          </td>
          <td>
             <table class="time-selection">
@@ -15,8 +15,8 @@
                         <? $minutes_iteration = 30 * 60;
                            $day_end = 24 * 60 * 60;
                            for ($i = 0; $i < $day_end; $i += $minutes_iteration) :
-                              $selected = ($i == $date_start_time) ? ' selected' : ''; ?>
-                        <option value="<?= $i ?>"<?= $selected ?>><?= date ('h:ia', $i) ?></option>
+                              $selected = ($i == $date_data['_date_start_time'][0]) ? ' selected' : ''; ?>
+                        <option value="<?= $i ?>"<?= $selected ?>><?= date ('g:ia', $i) ?></option>
                         <? endfor; ?>
                      </select>
                   </td>
@@ -42,7 +42,7 @@
                                  $formatted_duration .= ($current_minutes / 60) . ' minutes';
                               endif;
 
-                              $selected = ($i == $date_duration) ? ' selected' : '';
+                              $selected = ($i == $date_data['_date_duration'][0]) ? ' selected' : '';
 
                               ?>
                         <option value="<?= $i ?>"<?= $selected ?>><?= $formatted_duration ?></option>

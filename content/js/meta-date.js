@@ -15,7 +15,8 @@ var del_date_meta = {
       $('#date-event').datepicker ({
          onSelect: function () {
             $('input[name=date_start]').val (this.value);
-         }
+         },
+         defaultDate: new Date($('input[name=date_start]').val())
       });
 
    }

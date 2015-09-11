@@ -35,12 +35,12 @@ class del_date_manager {
       wp_nonce_field ($this->nonce_action, 'del_date_nonce');
 
       // load current values
-      // TODO: Add functionality
+      $date_data = get_metadata ('post', $post->ID);
 
       // set defaults if no date already set
-      $date_start = date ('m/d/Y');
-      $date_start_time = DEL_DATE_DEFAULT_START_TIME;
-      $date_duration = DEL_DATE_DEFAULT_DURATION;
+      $date_data['_date_start'] || $date_data['_date_start'] = date ('m/d/Y');
+      $date_data['_date_start_time'] || $date_data['_date_start_time'] = DEL_DATE_DEFAULT_START_TIME;
+      $date_data['_date_duration'] || $date_data['_date_duration'] = DEL_DATE_DEFAULT_DURATION;
 
       // add the form contents
       include (DEL_BASE_PATH . '/content/meta-date.php');
@@ -53,8 +53,9 @@ class del_date_manager {
       if (! wp_verify_nonce ($_POST['del_date_nonce'], $this->nonce_action)) return $post_id;
 
       // save the date data to meta fields
-      // TODO: Add functionality
-      // del_utilities::save_meta_field ($post_id, 'loc_address1', '_del_address1');
+      del_utilities::save_meta_field ($post_id, 'date_start', '_date_start');
+      del_utilities::save_meta_field ($post_id, 'date_start_time', '_date_start_time');
+      del_utilities::save_meta_field ($post_id, 'date_duration', '_date_duration');
 
       return $post_id;
 
