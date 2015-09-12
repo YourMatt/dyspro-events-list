@@ -36,12 +36,12 @@ class del_date_manager {
 
       // load current values
       $date_data = get_metadata ('post', $post->ID);
-      if ($date_data['_date_start']) $date_data['_date_start'] = date ('m/d/Y', $date_data['_date_start']);
+      if ($date_data['_date_start']) $date_data['_date_start'][0] = date ('m/d/Y', $date_data['_date_start'][0]);
 
       // set defaults if no date already set
-      $date_data['_date_start'] || $date_data['_date_start'] = date ('m/d/Y');
-      $date_data['_date_start_time'] || $date_data['_date_start_time'] = DEL_DATE_DEFAULT_START_TIME;
-      $date_data['_date_duration'] || $date_data['_date_duration'] = DEL_DATE_DEFAULT_DURATION;
+      $date_data['_date_start'] || $date_data['_date_start'][0] = date ('m/d/Y');
+      $date_data['_date_start_time'] || $date_data['_date_start_time'][0] = DEL_DATE_DEFAULT_START_TIME;
+      $date_data['_date_duration'] || $date_data['_date_duration'][0] = DEL_DATE_DEFAULT_DURATION;
 
       // add the form contents
       include (DEL_BASE_PATH . '/content/meta-date.php');

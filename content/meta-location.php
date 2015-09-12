@@ -2,11 +2,16 @@
 
    <table>
       <tr><td class="col1">
-            <label for="loc_address1">Address 1</label>
+            <label for="loc_name">Name</label>
          </td><td class="col2">
-            <input type="text" name="loc_address1" maxlength="30" value="<?= esc_attr ($loc_data["_del_address1"][0]) ?>"/>
-         </td><td rowspan="6" class="col3">
+            <input type="text" name="loc_name" maxlength="50" value="<?= esc_attr ($loc_data["_del_name"][0]) ?>"/>
+         </td><td rowspan="7" class="col3">
             <div id="del-meta-location-map"></div>
+         </td></tr>
+      <tr><td>
+            <label for="loc_address1">Address 1</label>
+         </td><td>
+            <input type="text" name="loc_address1" maxlength="30" value="<?= esc_attr ($loc_data["_del_address1"][0]) ?>"/>
          </td></tr>
       <tr><td>
             <label for="loc_address2">Address 2</label>

@@ -56,6 +56,7 @@ class del_location_manager {
       if (! wp_verify_nonce ($_POST['del_loc_nonce'], $this->nonce_action)) return $post_id;
 
       // save the location data to meta fields
+      del_utilities::save_meta_field ($post_id, 'loc_name', '_del_name');
       del_utilities::save_meta_field ($post_id, 'loc_address1', '_del_address1');
       del_utilities::save_meta_field ($post_id, 'loc_address2', '_del_address2');
       del_utilities::save_meta_field ($post_id, 'loc_city', '_del_city');
@@ -73,18 +74,20 @@ class del_location_manager {
       $loc_data = get_metadata ('post', $post_id);
 
       // set up the address lines
-      $line1 = $loc_data['_del_address1'][0];
-      $line2 = $loc_data['_del_address2'][0];
-      $line3 = $loc_data['_del_city'][0];
-      if ($line3) $line3 .= ', ';
-      $line3 .= $loc_data['_del_state'][0];
-      if ($loc_data['_del_postalcode']) $line3 .= ' ' . $loc_data['_del_postalcode'][0];
+      $line1 = $loc_data['_del_name'][0];
+      $line2 = $loc_data['_del_address1'][0];
+      $line3 = $loc_data['_del_address2'][0];
+      $line4 = $loc_data['_del_city'][0];
+      if ($line4) $line4 .= ', ';
+      $line4 .= $loc_data['_del_state'][0];
+      if ($loc_data['_del_postalcode']) $line4 .= ' ' . $loc_data['_del_postalcode'][0];
 
       // build the address
       $address = [];
       if ($line1) $address[] = $line1;
       if ($line2) $address[] = $line2;
       if ($line3) $address[] = $line3;
+      if ($line4) $address[] = $line4;
 
       return implode ('<br/>', $address);
 
