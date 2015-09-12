@@ -54,7 +54,8 @@ class del_plugin_manager {
             'supports' => array (
                'thumbnail',
                'title',
-               'editor'
+               'editor',
+               'excerpt'
             )
          )
       );

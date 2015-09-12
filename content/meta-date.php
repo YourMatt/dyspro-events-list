@@ -12,7 +12,7 @@
                   <td>Time</td>
                   <td>
                      <select name="date_start_time">
-                        <? $minutes_iteration = 30 * 60;
+                        <? $minutes_iteration = DEL_DATE_TIME_ITERATION_MINUTES * 60;
                            $day_end = 24 * 60 * 60;
                            for ($i = 0; $i < $day_end; $i += $minutes_iteration) :
                               $selected = ($i == $date_data['_date_start_time'][0]) ? ' selected' : ''; ?>
@@ -25,7 +25,7 @@
                   <td>Duration</td>
                   <td>
                      <select name="date_duration">
-                        <? $minutes_iteration = 15 * 60;
+                        <? $minutes_iteration = DEL_DATE_DURATION_ITERATION_MINUTES * 60;
                            $max_duration = 24 * 60 * 60;
                            for ($i = $minutes_iteration; $i <= $max_duration; $i += $minutes_iteration) :
                               // format the option as: x hours y minutes
