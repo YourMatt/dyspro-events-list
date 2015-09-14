@@ -26,6 +26,7 @@ add_action ('init', array ($del_plugin_manager, 'register_event_post_type'));
 add_action ('add_meta_boxes', array ($del_date_manager, 'add_meta_boxes'));
 add_action ('add_meta_boxes', array ($del_location_manager, 'add_meta_boxes'));
 add_action ('admin_menu', array ($del_settings_manager, 'register_admin_menu_pages'));
+add_action ('widgets_init', function () { register_widget ('del_widget'); });
 
 // set up shortcodes
 add_shortcode ('del_event_list', array ($del_shortcode_manager, 'build_event_list'));
