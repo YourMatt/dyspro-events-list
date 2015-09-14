@@ -47,6 +47,7 @@ class del_plugin_manager {
                'feeds'=> true,
                'pages'=> true
             ),
+            'capability_type' => 'page',
             'has_archive' => false,
             'hierarchical' => true,
             'menu_icon' => 'dashicons-calendar-alt',

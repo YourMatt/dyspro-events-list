@@ -11,10 +11,18 @@ class del_shortcode_manager {
          'post_type' => DEL_POST_TYPE_NAME,
          'posts_per_page' => -1,
          'meta_key' => '_date_start',
+         'meta_compare' => '>',
+         'meta_value' => time (), // skip events that have passed
          'orderby' => 'meta_value_num',
          'order' => 'ASC'
       ));
 
+      // show message for no events if none found
+      if (!$events) {
+         return $this->build_no_upcoming_message ();
+      }
+
+      // display all upcoming events
       $last_month_title = ''; // used as control break to show month headings // TODO: Make this configurable for those that don't want it
       foreach ($events as $event) {
 
@@ -34,7 +42,7 @@ class del_shortcode_manager {
          }
 
          // add the event
-         $event_list .= '<li>';
+         $event_list .= '<li><!-- compared ' . time() . ' to ' . $event_meta['_date_start'][0] . ' -->';
          if ($event_thumb) {
             $event_list .= '<div class="event-photo"><a href="' . $link . '">' . $event_thumb . '</a></div>';
          }
@@ -52,6 +60,16 @@ class del_shortcode_manager {
       $event_list .= '</ul>';
 
       return $event_list;
+
+   }
+
+   private function build_no_upcoming_message () {
+
+      $message = '<ul class="events">';
+      $message .= '<li class="no-events"><p>There are no upcoming events.</p></li>';
+      $message .= '</ul>';
+
+      return $message;
 
    }
 
