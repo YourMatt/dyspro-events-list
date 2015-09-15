@@ -2,17 +2,17 @@
 
 class del_utilities {
 
-   public static function get_events ($get_next_only = false, $thumb_size = 'large') {
+   public static function get_events ($show_past_events = false, $get_next_only = false, $thumb_size = 'large') {
 
       // load the base event posts
       $events = get_posts (array (
          'post_type' => DEL_POST_TYPE_NAME,
          'posts_per_page' => ($get_next_only) ? 1 : -1, // either return one or all
          'meta_key' => '_date_start',
-         'meta_compare' => '>',
-         'meta_value' => time (), // skip events that have passed
+         'meta_compare' => ($show_past_events) ? '<' : '>=', // set to look before or after current time
+         'meta_value' => time (),
          'orderby' => 'meta_value_num',
-         'order' => 'ASC'
+         'order' => ($show_past_events) ? 'DESC' : 'ASC'
       ));
       if (!$events) return array ();
 

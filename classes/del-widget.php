@@ -15,7 +15,7 @@ class del_widget extends WP_Widget {
    function widget ($args, $instance) {
 
       // load the next upcoming event
-      $event = del_utilities::get_events (true, 'medium');
+      $event = del_utilities::get_events (false, true, 'medium');
 
       // write the widget contents
       $title = apply_filters ('widget_title', $instance['title']);
@@ -33,6 +33,7 @@ class del_widget extends WP_Widget {
 
       print '<div class="eventwidget-empty">';
       print '<p>There are no upcoming events.</p>';
+      print '<a href="/events?past">View Past Events</a>';
       print '</div>';
 
    }

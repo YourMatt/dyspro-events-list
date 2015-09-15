@@ -4,11 +4,12 @@ class del_shortcode_manager {
 
    public function build_event_list () {
 
+      $show_past_events = isset ($_REQUEST['past']);
       $event_list = '';
-      $events = del_utilities::get_events ();
+      $events = del_utilities::get_events ($show_past_events);
 
       // show message for no events if none found
-      if (!$events) {
+      if (!$events && !$show_past_events) {
          return $this->build_no_upcoming_message ();
       }
 
@@ -16,7 +17,6 @@ class del_shortcode_manager {
       $last_month_title = ''; // used as control break to show month headings // TODO: Make this configurable for those that don't want it
       foreach ($events as $event) {
 
-         // $event_meta = get_post_meta ($event->ID);
          $date = date ('l, M. jS', $event->meta['_date_start'][0]);
          $time_start = date ('g:ia', $event->meta['_date_start_time'][0]);
          $time_end = date ('g:ia', $event->meta['_date_start_time'][0] + $event->meta['_date_duration'][0]);
