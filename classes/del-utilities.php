@@ -2,6 +2,33 @@
 
 class del_utilities {
 
+   public static function get_events ($get_next_only = false, $thumb_size = 'large') {
+
+      // load the base event posts
+      $events = get_posts (array (
+         'post_type' => DEL_POST_TYPE_NAME,
+         'posts_per_page' => ($get_next_only) ? 1 : -1, // either return one or all
+         'meta_key' => '_date_start',
+         'meta_compare' => '>',
+         'meta_value' => time (), // skip events that have passed
+         'orderby' => 'meta_value_num',
+         'order' => 'ASC'
+      ));
+      if (!$events) return array ();
+
+      // load meta data for each event
+      $num_events = count ($events);
+      for ($i = 0; $i < $num_events; $i++) {
+         $events[$i]->meta = get_post_meta ($events[$i]->ID);
+         $events[$i]->thumb = get_the_post_thumbnail ($events[$i]->ID, $thumb_size);
+         $events[$i]->link = '/events/' . $events[$i]->post_name;
+      }
+
+      // return single only if requested
+      return ($get_next_only) ? $events[0] : $events;
+
+   }
+
    public static function save_meta_field ($post_id, $field_name, $meta_name) {
 
       $current_value = get_post_meta ($post_id, $meta_name, true);

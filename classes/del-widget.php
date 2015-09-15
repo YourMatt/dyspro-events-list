@@ -14,14 +14,41 @@ class del_widget extends WP_Widget {
 
    function widget ($args, $instance) {
 
-      $title = apply_filters ('widget_title', $instance['title']);
+      // load the next upcoming event
+      $event = del_utilities::get_events (true, 'medium');
 
+      // write the widget contents
+      $title = apply_filters ('widget_title', $instance['title']);
       print $args['before_widget'];
       print $args['before_title'] . $title . $args['after_title'];
 
-      print 'There are no upcoming events.';
+      if ($event) $this->build_next_upcoming_event ($event);
+      else $this->build_no_upcoming_message ();
 
       print $args['after_widget'];
+
+   }
+
+   function build_no_upcoming_message () {
+
+      print '<div class="eventwidget-empty">';
+      print '<p>There are no upcoming events.</p>';
+      print '</div>';
+
+   }
+
+   function build_next_upcoming_event (&$event) {
+
+      $date = date ('l, F jS', $event->meta['_date_start'][0]);
+
+      print '<div class="eventwidget">';
+      if ($event->thumb) {
+         print $event->thumb;
+      }
+      print '<h3>' . $event->post_excerpt . '</h3>';
+      print '<p>At ' . $event->meta['_del_name'][0] . ' in ' . $event->meta['_del_city'][0]  . ' on ' . $date . '.</p>';
+      print '<a href="' . $event->link . '">Event Details</a>';
+      print '</div>';
 
    }
 
