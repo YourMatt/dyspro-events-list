@@ -23,16 +23,21 @@ class del_widget extends WP_Widget {
       print $args['before_title'] . $title . $args['after_title'];
 
       if ($event) $this->build_next_upcoming_event ($event);
-      else $this->build_no_upcoming_message ();
+      else $this->build_no_upcoming_message ($instance);
 
       print $args['after_widget'];
 
    }
 
-   function build_no_upcoming_message () {
+   function build_no_upcoming_message ($instance) {
+
+      $no_upcoming_custom_message = $instance['no_upcoming_custom_message'];
 
       print '<div class="eventwidget-empty">';
-      print '<p>There are no upcoming events.</p>';
+      print '<h3>There are currently no upcoming events.</h3>';
+      if ($no_upcoming_custom_message) {
+         print '<p>' . $instance['no_upcoming_custom_message'] . '</p>';
+      }
       print '<a href="/events?past">View Past Events</a>';
       print '</div>';
 
@@ -62,10 +67,16 @@ class del_widget extends WP_Widget {
    function form ($instance) {
 
       $title = $instance['title'];
+      $no_upcoming_custom_message = $instance['no_upcoming_custom_message'];
 
       print '<p>';
       print '<label for="' . $this->get_field_id ('title') . '">Title:</label>';
       print '<input id="' . $this->get_field_id ('title') . '" name="' . $this->get_field_name ('title') . '" type="text" value="' . esc_attr ($title) . '"/>';
+      print '</p>';
+
+      print '<p>';
+      print '<label for="' . $this->get_field_id ('no_upcoming_custom_message') . '">No Upcoming Events Custom Message:</label>';
+      print '<textarea id="' . $this->get_field_id ('no_upcoming_custom_message') . '" name="' . $this->get_field_name ('no_upcoming_custom_message') . '">' . $no_upcoming_custom_message . '</textarea>';
       print '</p>';
 
    }
